@@ -10,3 +10,5 @@ from raylibpy.spartan import *
 # raylibpy modules
 # preserve their module names
 from raylibpy import easings
+
+__version__ = '3.7.0'
