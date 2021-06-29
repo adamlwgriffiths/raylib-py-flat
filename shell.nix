@@ -17,15 +17,11 @@ let
     python = "python38";
     #requirements = builtins.readFile ./requirements.dev.txt;
     # include setuptools for deployments
+    # explicit cffi required to avoid errors
     requirements = ''
       setuptools
       cffi>=1.12
-      #twine
-      poetry
-    '';
-    # resolve collision in poetry
-    _.poetry.postInstall = ''
-      rm $out/lib/python*/site-packages/poetry/__pycache__/__init__.cpython-38.pyc
+      twine
     '';
     packagesExtra = [
       raylibpy
@@ -36,7 +32,7 @@ let
       # https://github.com/NixOS/nixpkgs/issues/76822
       PyOpenGL = "nixpkgs";
       PyOpenGL_accelerate = "nixpkgs";
-      #cffi = "nixpkgs";
+      cffi = "nixpkgs";
     };
   };
 in pkgs.mkShell {
